@@ -6,11 +6,11 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:42:10 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/01/26 00:44:15 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/01/29 16:29:51 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/philo.h"
+#include "../includes/philo.h"
 
 static int	is_space(int c)
 {

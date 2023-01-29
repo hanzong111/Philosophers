@@ -6,11 +6,11 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:17:49 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/01/26 00:41:41 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/01/29 17:11:18 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/philo.h"
+#include "../includes/philo.h"
 
 int	error_checks(int argc, char **argv)
 {
@@ -29,9 +29,24 @@ int	error_checks(int argc, char **argv)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	philo_init(t_info *info)
 {
+
+}
+
+int	main(int argc, char **argv)
+{
+	t_info	info;
+
 	if (error_checks(argc, argv) != 0)
+		return (1);
+	get_inputs(argc, argv, &info);
+	if (pthread_mutex_init(&info.write_mutex, NULL) != 0)
+		return (1);
+	info.start_time = get_start_time(NULL);
+	if (fork_init(&info) != 0)
+		return (1);
+	if (philo_init(&info) != 0)
 		return (1);
 	return (0);
 }
