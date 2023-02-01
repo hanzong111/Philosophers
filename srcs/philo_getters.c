@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:22:09 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/01/29 17:10:24 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/01 22:45:50 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,19 @@ struct timeval	get_start_time(void *timezone)
 	return (time);
 }
 
-void	get_time(struct timeval start)
+int	get_time(struct timeval start)
 {
 	struct timeval	current;
 
 	gettimeofday(&current, NULL);
 	return (((current.tv_sec - start.tv_sec) * 1000)
 		+ ((current.tv_usec - start.tv_usec) / 1000));
+}
+
+void	get_message(t_info *info, int i, char *str)
+{
+	pthread_mutex_lock(&info->write_mutex);
+	printf("%d\t %d %s\n", get_time(info->start_time),
+		i, str);
+	pthread_mutex_unlock(&info->write_mutex);
 }

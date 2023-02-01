@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:17:49 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/01/29 17:11:18 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/01 23:21:05 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,30 @@ int	error_checks(int argc, char **argv)
 	return (0);
 }
 
-int	philo_init(t_info *info)
+void	*routine(t_philo *philo)
 {
 
+}
+
+int	philo_init(t_info *info)
+{
+	int			i;
+	pthread_t	temp;
+
+	i = -1;
+	while (++i < info->total_philo)
+	{
+		info->philo[i].last_ate = info->start_time;
+		info->philo[i].left = &(info->fork[i]);
+		info->philo[i].right = &(info->fork[(i + 1) % info->total_philo]);
+		info->philo[i].n = i + 1;
+		if (pthread_mutex_init(&(info->philo[i].philo_mutex), NULL))
+			return (1);
+		if (pthread_create(&temp, NULL, routine, &(info->philo[i])) != 0)
+			return (1);
+		pthread_detach(temp);
+	}
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -46,7 +67,7 @@ int	main(int argc, char **argv)
 	info.start_time = get_start_time(NULL);
 	if (fork_init(&info) != 0)
 		return (1);
-	if (philo_init(&info) != 0)
-		return (1);
+	// if (philo_init(&info) != 0)
+	// 	return (1);
 	return (0);
 }
