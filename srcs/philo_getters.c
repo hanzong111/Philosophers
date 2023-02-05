@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:22:09 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/05 15:20:23 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/05 18:41:23 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	get_inputs(int argc, char **argv, t_info *info)
 	info->input.death_time = ft_atoi(argv[2]);
 	info->input.eat_time = ft_atoi(argv[3]);
 	info->input.sleep_time = ft_atoi(argv[4]);
+	info->input.arg_5 = 0;
 	if (argc == 6)
+	{
 		info->input.eat_max = ft_atoi(argv[5]);
+		info->input.arg_5 = 1;
+	}
 }
 
 struct timeval	get_current_time(void *timezone)

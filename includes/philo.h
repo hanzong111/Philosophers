@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:50:46 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/05 15:22:32 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/05 18:40:22 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_input
 	int				sleep_time;
 	int				death_time;
 	int				eat_max;
+	int				arg_5;
 }	t_input;
 
 typedef struct s_main
@@ -73,5 +74,10 @@ void			get_message(t_philo *philo, int i, char *str);
 
 //inits
 int				fork_init(t_info *info);
+int				philo_init(t_info *info);
+
+//Routine
+void			eat(t_philo	*philo);
+void			*routine(void	*philo);
 
 #endif

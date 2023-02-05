@@ -6,7 +6,7 @@
 #    By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 20:26:19 by ojing-ha          #+#    #+#              #
-#    Updated: 2023/02/05 15:30:27 by ojing-ha         ###   ########.fr        #
+#    Updated: 2023/02/05 18:35:55 by ojing-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,8 @@ CFLAGS	= -Wall -Werror -Wextra -pthread -fsanitize=address -g3
 SRC_FILES	= philo_main\
 				philo_libft\
 				philo_getters\
-				philo_inits
+				philo_inits\
+				philo_routine
 
 
 SRCS	= $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
