@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:22:09 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/05 18:41:23 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:12:28 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	get_time(struct timeval start)
 		+ ((current.tv_usec - start.tv_usec) / 1000));
 }
 
-void	get_message(t_philo *philo, int i, char *str)
-{
+void	get_message(t_philo *philo, int i, char *str, char *color)
+{	
 	pthread_mutex_lock(&philo->main->write_mutex);
-	printf("%d\t %d %s\n", get_time(philo->main->start_time),
-		i, str);
+	printf("%s%d\t %d %s%s\n", color, get_time(philo->main->start_time),
+		i, str, DEF);
 	pthread_mutex_unlock(&philo->main->write_mutex);
 }

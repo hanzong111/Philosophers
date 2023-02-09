@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:17:49 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/05 22:28:36 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:17:50 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,13 @@ int	check_death(t_philo	*philo)
 	int	current;
 
 	current = get_time(philo->main->start_time);
+	pthread_mutex_lock(&philo->philo_mutex);
 	if ((current - philo->last_ate) >= philo->input->death_time)
+	{
+		pthread_mutex_unlock(&philo->philo_mutex);
 		return (1);
+	}
+	pthread_mutex_unlock(&philo->philo_mutex);
 	return (0);
 }
 
@@ -55,7 +60,7 @@ int	check_philo(t_philo *philo)
 					temp++;
 			if (check_death(&philo[i]))
 			{
-				get_message(philo, i + 1, "has died");
+				get_message(philo, i + 1, "has died", RED);
 				exit (0);
 			}
 		}

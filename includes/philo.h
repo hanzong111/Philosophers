@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:50:46 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/05 18:40:22 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:20:12 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+
+# define DEF "\033[0;39m"
+# define RED "\033[0;91m"
+# define GREEN "\033[0;92m"
+# define YELLOW "\033[0;93m"
+# define BLUE "\033[0;94m"
 
 typedef struct s_fork
 {
@@ -55,7 +61,6 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-
 	t_input			input;
 	t_main			main;
 	t_fork			fork[200];
@@ -70,7 +75,7 @@ int				str_is_digit(char *str);
 void			get_inputs(int argc, char **argv, t_info *info);
 struct timeval	get_current_time(void *timezone);
 int				get_time(struct timeval start);
-void			get_message(t_philo *philo, int i, char *str);
+void			get_message(t_philo *philo, int i, char *str, char *color);
 
 //inits
 int				fork_init(t_info *info);
