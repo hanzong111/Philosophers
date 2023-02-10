@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:50:46 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/09 13:20:12 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:08:40 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,18 @@ typedef struct s_philo
 	int				n;
 	int				total_ate;
 	int				last_ate;
+	int				*status;
 	pthread_mutex_t	philo_mutex;
 	t_fork			*left;
 	t_fork			*right;
 	t_input			*input;
 	t_main			*main;
+
 }	t_philo;
 
 typedef struct s_info
 {
+	int				status;
 	t_input			input;
 	t_main			main;
 	t_fork			fork[200];

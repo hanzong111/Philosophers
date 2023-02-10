@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:29:14 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/05 18:29:57 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/10 14:08:42 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	philo_init(t_info *info)
 		info->philo[i].total_ate = 0;
 		info->philo[i].input = &(info->input);
 		info->philo[i].main = &(info->main);
+		info->philo[i].status = &(info->status);
 		if (pthread_mutex_init(&(info->philo[i].philo_mutex), NULL))
 			return (1);
 		if (pthread_create(&temp, NULL, routine, &(info->philo[i])) != 0)
