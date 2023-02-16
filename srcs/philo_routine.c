@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:17:49 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/10 13:11:47 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/17 00:18:03 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@ void	choose_fork(t_philo *philo, t_fork **left, t_fork **right)
 {
 	*left = philo->right;
 	*right = philo->left;
-	if (philo->left->n < philo->right->n)
-	{
-		*left = philo->left;
-		*right = philo->right;
-	}
 }
 
 void	eat(t_philo	*philo)
