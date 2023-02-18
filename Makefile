@@ -6,7 +6,7 @@
 #    By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/14 20:26:19 by ojing-ha          #+#    #+#              #
-#    Updated: 2023/02/17 00:12:12 by ojing-ha         ###   ########.fr        #
+#    Updated: 2023/02/18 13:30:20 by ojing-ha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS_DIR	= srcs/
 OBJS_DIR	= objs/
 INCLUDES	= includes/
 
-CFLAGS	= -Wall -Werror -Wextra -pthread 
+CFLAGS	= -Wall -Werror -Wextra -pthread
 
 SRC_FILES	= philo_main\
 				philo_libft\

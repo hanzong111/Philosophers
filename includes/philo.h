@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:50:46 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/10 14:08:40 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/18 12:39:28 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ typedef struct s_input
 
 typedef struct s_main
 {
+	int				counter;
 	struct timeval	start_time;
+	pthread_mutex_t	switch_mutex;
 	pthread_mutex_t	write_mutex;
 }	t_main;
 
