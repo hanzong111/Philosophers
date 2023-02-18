@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:17:49 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/18 14:28:25 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:24:33 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@ void	ft_sleep(int sleeptime, int eat_start, struct timeval start_time)
 	}
 }
 
-void	eat(t_philo	*philo)
+void	calculate_time(t_philo *philo, int sleep)
+{
+	philo->last_ate += philo->input->eat_time;
+	if (sleep == 1)
+		philo->last_ate += philo->input->sleep_time;
+}
+
+void	eat(t_philo	*philo, int sleep)
 {
 	pthread_mutex_lock(&philo->left->fork_mutex);
 	get_message(philo, philo->n, "has taken left fork", GREEN);
@@ -31,10 +38,12 @@ void	eat(t_philo	*philo)
 	get_message(philo, philo->n, "is eating", GREEN);
 	pthread_mutex_lock(&philo->philo_mutex);
 	philo->total_ate++;
-	philo->last_ate += philo->input->eat_time;
 	pthread_mutex_unlock(&philo->philo_mutex);
 	ft_sleep(philo->input->eat_time,
 		get_time(philo->main->start_time), philo->main->start_time);
+	pthread_mutex_lock(&philo->philo_mutex);
+	calculate_time(philo, sleep);
+	pthread_mutex_unlock(&philo->philo_mutex);
 	pthread_mutex_unlock(&philo->left->fork_mutex);
 	pthread_mutex_unlock(&philo->right->fork_mutex);
 }
@@ -54,7 +63,7 @@ void	*routine(void	*philo)
 	if ((((t_philo *)philo)->n % 2) == 0)
 		ft_sleep(25, get_time(((t_philo *)philo)->main->start_time),
 			((t_philo *)philo)->main->start_time);
-	eat((t_philo *)philo);
+	eat((t_philo *)philo, 0);
 	while (1)
 	{
 		get_message((t_philo *)philo,
@@ -62,12 +71,8 @@ void	*routine(void	*philo)
 		ft_sleep(((t_philo *)philo)->input->eat_time,
 			get_time(((t_philo *)philo)->main->start_time),
 			((t_philo *)philo)->main->start_time);
-		((t_philo *)philo)->last_ate += ((t_philo *)philo)->input->sleep_time;
-		pthread_mutex_lock(&((t_philo *)philo)->philo_mutex);
-		((t_philo *)philo)->last_ate += ((t_philo *)philo)->input->sleep_time;
-		pthread_mutex_unlock(&((t_philo *)philo)->philo_mutex);
 		get_message((t_philo *)philo,
 			((t_philo *)philo)->n, "is thinking", BLUE);
-		eat((t_philo *)philo);
+		eat((t_philo *)philo, 1);
 	}
 }
