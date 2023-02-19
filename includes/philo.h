@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:50:46 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/19 12:58:51 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/19 13:04:04 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,9 @@ int				philo_init(t_info *info);
 //Routine
 void			eat(t_philo	*philo);
 void			*routine(void	*philo);
+
+//Check Death
+int				check_death(t_philo	*philo);
+int				check_philo(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 16:22:09 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/10 14:19:43 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/19 13:02:44 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	get_message(t_philo *philo, int i, char *str, char *color)
 	if (*(philo->status))
 	{
 		printf("%s%d\t %d %s%s\n", color, get_time(philo->main->start_time),
-		i, str, DEF);
+			i, str, DEF);
 	}
 	pthread_mutex_unlock(&philo->main->write_mutex);
 }
