@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:17:49 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/18 13:33:06 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/19 12:58:41 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,5 @@ int	main(int argc, char **argv)
 	info.main.start_time = get_current_time(NULL);
 	if (philo_init(&info) != 0)
 		return (1);
-	// pthread_mutex_lock(&info.main.switch_mutex);
-	// info.main.start_time = get_current_time(NULL);
-	// info.main.counter = 0;
-	// pthread_mutex_unlock(&info.main.switch_mutex);
 	return (check_philo(info.philo));
 }

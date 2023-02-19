@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 15:50:46 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/18 14:55:05 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/19 12:58:51 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				fork_init(t_info *info);
 int				philo_init(t_info *info);
 
 //Routine
-void			eat(t_philo	*philo, int sleep);
+void			eat(t_philo	*philo);
 void			*routine(void	*philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ojing-ha <ojing-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 00:17:49 by ojing-ha          #+#    #+#             */
-/*   Updated: 2023/02/18 15:24:33 by ojing-ha         ###   ########.fr       */
+/*   Updated: 2023/02/19 12:58:34 by ojing-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,13 @@ void	ft_sleep(int sleeptime, int eat_start, struct timeval start_time)
 {
 	while (1)
 	{
-		usleep(1);
+		usleep(500);
 		if ((get_time(start_time) - eat_start) >= sleeptime)
 			return ;
 	}
 }
 
-void	calculate_time(t_philo *philo, int sleep)
-{
-	philo->last_ate += philo->input->eat_time;
-	if (sleep == 1)
-		philo->last_ate += philo->input->sleep_time;
-}
-
-void	eat(t_philo	*philo, int sleep)
+void	eat(t_philo	*philo)
 {
 	pthread_mutex_lock(&philo->left->fork_mutex);
 	get_message(philo, philo->n, "has taken left fork", GREEN);
@@ -42,7 +35,7 @@ void	eat(t_philo	*philo, int sleep)
 	ft_sleep(philo->input->eat_time,
 		get_time(philo->main->start_time), philo->main->start_time);
 	pthread_mutex_lock(&philo->philo_mutex);
-	calculate_time(philo, sleep);
+	philo->last_ate = get_time(philo->main->start_time);
 	pthread_mutex_unlock(&philo->philo_mutex);
 	pthread_mutex_unlock(&philo->left->fork_mutex);
 	pthread_mutex_unlock(&philo->right->fork_mutex);
@@ -50,20 +43,10 @@ void	eat(t_philo	*philo, int sleep)
 
 void	*routine(void	*philo)
 {
-	// while (1)
-	// {
-	// 	pthread_mutex_lock(&((t_philo *)philo)->main->switch_mutex);
-	// 	if (((t_philo *)philo)->main->counter == 0)
-	// 	{
-	// 		pthread_mutex_unlock(&((t_philo *)philo)->main->switch_mutex);
-	// 		break ;
-	// 	}
-	// 	pthread_mutex_unlock(&((t_philo *)philo)->main->switch_mutex);
-	// }
 	if ((((t_philo *)philo)->n % 2) == 0)
 		ft_sleep(25, get_time(((t_philo *)philo)->main->start_time),
 			((t_philo *)philo)->main->start_time);
-	eat((t_philo *)philo, 0);
+	eat((t_philo *)philo);
 	while (1)
 	{
 		get_message((t_philo *)philo,
@@ -73,6 +56,6 @@ void	*routine(void	*philo)
 			((t_philo *)philo)->main->start_time);
 		get_message((t_philo *)philo,
 			((t_philo *)philo)->n, "is thinking", BLUE);
-		eat((t_philo *)philo, 1);
+		eat((t_philo *)philo);
 	}
 }
